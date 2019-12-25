@@ -2,12 +2,10 @@ const postcss = require('postcss')
 
 const plugin = require('./')
 
-async function run (input, output, opts) {
-  let result = await postcss([plugin(opts)]).process(input, {
+async function run (input, opts) {
+  return postcss([plugin(opts)]).process(input, {
     from: undefined
   })
-  expect(result.css).toEqual(output)
-  expect(result.warnings()).toHaveLength(0)
 }
 
 it(
@@ -27,7 +25,9 @@ it(
       }
     `
 
-    await run(input, expectedOutput)
+    let result = await run(input)
+    expect(result.css).toEqual(expectedOutput)
+    expect(result.warnings()).toHaveLength(0)
   }
 )
 
@@ -38,5 +38,27 @@ it('Leaves other selectors unchanged', async () => {
     }
   `
 
-  await run(input, input)
+  let expectedOutput = input
+
+  let result = await run(input)
+  expect(result.css).toEqual(expectedOutput)
+  expect(result.warnings()).toHaveLength(0)
+})
+
+it('Throws an error when colour is spelt incorrectly', async () => {
+  let input = `
+    a {
+      color: nope;
+    } 
+  `
+
+  let error
+  try {
+    await run(input)
+  } catch (err) {
+    error = err
+  }
+
+  expect(error.name).toEqual('CssSyntaxError')
+  expect(error.reason).toEqual('Use correct spelling of "colour"...')
 })
