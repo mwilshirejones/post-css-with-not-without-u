@@ -1,18 +1,18 @@
-# PostCSS With Or Without U
+# PostCSS With Not Without U
 
-[PostCSS] plugin allowing the correct spelling of "colour".
-
-[PostCSS]: https://github.com/postcss/postcss
+[PostCSS](https://github.com/postcss/postcss) plugin allowing the correct spelling of "colour".
 
 ```css
 .foo {
-    /* Input example */
+  /* Input example */
+  colour: #000;
 }
 ```
 
 ```css
 .foo {
   /* Output example */
+  color: #000;
 }
 ```
 

@@ -1,5 +1,5 @@
 {
-  "name": "postcss-with-or-without-u",
+  "name": "postcss-with-not-without-u",
   "version": "0.0.0",
   "description": "PostCSS plugin allowing the correct spelling of 'colour'",
   "keywords": [
@@ -16,7 +16,7 @@
   },
   "author": "Matthew Jones <m.wilshirejones@gmail.com>",
   "license": "MIT",
-  "repository": "mwilshirejones/postcss-with-or-without-u",
+  "repository": "mwilshirejones/postcss-with-not-without-u",
   "dependencies": {
     "postcss": "^7.0.18"
   },

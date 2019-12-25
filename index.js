@@ -1,12 +1,14 @@
 let postcss = require('postcss')
 
-module.exports = postcss.plugin('postcss-with-or-without-u', (opts = { }) => {
+module.exports = postcss.plugin('postcss-with-not-without-u', () => {
+  return root => {
+    root.walkDecls(/colour/, decl => {
+      let erroneousDecl = decl.clone({
+        prop: decl.prop.replace(/colour/, 'color'),
+        value: decl.value
+      })
 
-  // Work with options here
-
-  return (root, result) => {
-
-    // Transform CSS AST here
-
+      decl.replaceWith(erroneousDecl)
+    })
   }
 })
