@@ -9,7 +9,7 @@ async function run (input, opts) {
 }
 
 it(
-  'Replaces correct spelling of "colour" to the erroneous spelling, "color"',
+  'Replaces correct spelling of "colour" with the erroneous spelling, "color"',
   async () => {
     let input = `
       a {
@@ -31,7 +31,7 @@ it(
   }
 )
 
-it('Leaves other selectors unchanged', async () => {
+it('Leaves other properties unchanged', async () => {
   let input = `
     a {
       border: yup;
