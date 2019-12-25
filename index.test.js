@@ -45,20 +45,42 @@ it('Leaves other properties unchanged', async () => {
   expect(result.warnings()).toHaveLength(0)
 })
 
-it('Throws an error when colour is spelt incorrectly', async () => {
-  let input = `
-    a {
-      color: nope;
-    } 
-  `
+describe('When strict option is true', () => {
+  it('Throws an error when colour is spelt incorrectly', async () => {
+    let input = `
+      a {
+        color: nope;
+      } 
+    `
 
-  let error
-  try {
-    await run(input)
-  } catch (err) {
-    error = err
-  }
+    let error
+    try {
+      await run(input, { strict: true })
+    } catch (err) {
+      error = err
+    }
 
-  expect(error.name).toEqual('CssSyntaxError')
-  expect(error.reason).toEqual('Use correct spelling of "colour"...')
+    console.log(error)
+    expect(error.name).toEqual('CssSyntaxError')
+    expect(error.reason).toEqual('Use correct spelling of "colour"...')
+  })
+})
+
+describe('When strict option is false', () => {
+  it('Does not throw an error', async () => {
+    let input = `
+      a {
+        color: nope;
+      } 
+    `
+
+    let error
+    try {
+      await run(input)
+    } catch (err) {
+      error = err
+    }
+
+    expect(error).not.toBeDefined()
+  })
 })

@@ -16,6 +16,17 @@
 }
 ```
 
+## Strict mode
+When `strict` mode is enabled an error will be thrown when colour is spelt incorrectly in the source CSS. For example:
+
+```css
+.foo {
+  color: #000;
+}
+```
+
+Will throw a `CssSyntaxError` instructing you to 'Use correct spelling of "colour"...'
+
 ## Usage
 
 Check you project for existed PostCSS config: `postcss.config.js`

@@ -3,12 +3,15 @@ const postcss = require('postcss')
 const CORRECT_SPELLING = 'colour'
 const ERRONEOUS_SPELLING = 'color'
 
-module.exports = postcss.plugin('postcss-with-not-without-u', () => {
+module.exports = postcss.plugin('postcss-with-not-without-u', (opts = {}) => {
   return root => {
     root.walkDecls(declaration => {
       let { prop, value } = declaration
 
-      if (prop.includes(ERRONEOUS_SPELLING)) {
+      if (
+        opts.strict === true &&
+        prop.includes(ERRONEOUS_SPELLING)
+      ) {
         throw declaration.error('Use correct spelling of "colour"...')
       }
 
