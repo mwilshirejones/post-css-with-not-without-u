@@ -60,7 +60,6 @@ describe('When strict option is true', () => {
       error = err
     }
 
-    console.log(error)
     expect(error.name).toEqual('CssSyntaxError')
     expect(error.reason).toEqual('Use correct spelling of "colour"...')
   })
