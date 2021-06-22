@@ -29,7 +29,7 @@ Will throw a `CssSyntaxError` instructing you to 'Use correct spelling of "colou
 
 ## Usage
 
-Check you project for existed PostCSS config: `postcss.config.js`
+Check your project for an existing PostCSS config: `postcss.config.js`
 in the project root, `"postcss"` section in `package.json`
 or `postcss` in bundle config.
 
